@@ -4,7 +4,7 @@ namespace ContentEntity;
 
 class Author extends AbstractEntity
 {
-    protected $name;
+    protected $fullname;
     protected $avatar;
     protected $email;
     protected $profile;

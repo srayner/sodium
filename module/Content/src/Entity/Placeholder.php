@@ -5,10 +5,10 @@ namespace Content\Entity;
 class Placeholder extends AbsractEntity
 {
     protected $name;
+    protected $template;
     protected $width;
     protected $height;
-    protected $template;
-    
+  
     public function getName()
     {
         return $this->name;
