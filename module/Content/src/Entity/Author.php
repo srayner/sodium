@@ -1,17 +1,30 @@
 <?php
 
-namespace ContentEntity;
+namespace Content\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="Content\Repository\Author")
+ * @ORM\Table(name="author")
+ */
 class Author extends AbstractEntity
 {
+    /** @ORM\Column(type="string") */
     protected $fullname;
+    
+    /** @ORM\Column(type="string") */
     protected $avatar;
+    
+    /** @ORM\Column(type="string") */
     protected $email;
+    
+    /** @ORM\Column(type="string") */
     protected $profile;
     
-    public function getName()
+    public function getFullname()
     {
-        return $this->name;
+        return $this->fullname;
     }
 
     public function getAvatar()
@@ -29,9 +42,9 @@ class Author extends AbstractEntity
         return $this->profile;
     }
 
-    public function setName($name)
+    public function setFullname($fullname)
     {
-        $this->name = $name;
+        $this->fullname = $fullname;
         return $this;
     }
 

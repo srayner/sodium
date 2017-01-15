@@ -10,4 +10,13 @@ class IndexController extends AbstractActionController
     {
         return [];
     }
+    
+    public function testAction()
+    {
+        // TODO: we need to inject a service and a view.
+        
+        $this->service->findAll();
+        $this->view->authors = $this->service->findAll();
+        return $this->view;
+    }
 }

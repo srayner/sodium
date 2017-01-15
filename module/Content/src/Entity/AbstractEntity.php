@@ -2,10 +2,20 @@
 
 namespace Content\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 abstract class AbstractEntity
 {
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */ 
     protected $id;
+    
+    
     protected $status;
+    
     protected $created;
     protected $createdBy;
     protected $modified;
