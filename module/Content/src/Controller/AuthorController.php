@@ -19,4 +19,19 @@ class AuthorController extends AbstractActionController
             'authors' => $this->service->findAll()
         ];
     }
+    
+    public function addAction()
+    {
+        
+    }
+    
+    public function editAction()
+    {
+        
+    }
+    
+    public function deleteAction()
+    {
+        
+    }
 }
