@@ -6,6 +6,7 @@
 return [
     'Zend\Router',
     'Zend\Validator',
+    'Zend\Form',
     'DoctrineModule',
     'DoctrineORMModule',
     'Application',
