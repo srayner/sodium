@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Settings, Shield, ChevronUp, User2, Sparkles } from 'lucide-react'
+import { Home, Settings, Shield, ChevronUp, User2, Sparkles, MapPin, ClipboardList } from 'lucide-react'
 import { useSession, signOut } from 'next-auth/react'
 
 import {
@@ -32,6 +32,16 @@ const mainNavItems = [
     title: 'Dashboard',
     url: '/dashboard',
     icon: Home,
+  },
+  {
+    title: 'Locations',
+    url: '/locations',
+    icon: MapPin,
+  },
+  {
+    title: 'Tasks',
+    url: '/tasks',
+    icon: ClipboardList,
   },
   {
     title: 'Settings',
