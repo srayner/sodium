@@ -1,144 +1,103 @@
-# Next Skeleton
+# Sodium 🧂
 
-A production-ready Next.js starter skeleton with authentication, role-based authorization, and a professional admin dashboard layout.
+Sodium is a generic application for managing cleaning and maintenance tasks across structured environments. It is designed to track the condition of locations over time by combining scheduled tasks, hierarchical areas, and gradual degradation when maintenance is missed.
 
-## Tech Stack
+The focus of the application is not only task completion, but understanding the overall _state_ of an environment and identifying areas that require attention.
 
-- **Next.js 14** - App Router, Server Components
-- **TypeScript** - Strict mode enabled
-- **Tailwind CSS** - Semantic color tokens
-- **shadcn/ui** - Professional UI components
-- **NextAuth v5** - Credentials authentication with JWT sessions
-- **Prisma** - PostgreSQL ORM
+---
 
-## Features
+## Description
 
-- User authentication (login/register)
-- Role-based authorization (user/admin)
-- Protected routes with middleware
-- Collapsible sidebar navigation
-- Dark/light theme support
-- Responsive design
+Sodium models an environment as a hierarchy of locations and areas. Maintenance tasks are associated with these areas and are expected to be performed on a defined schedule. When tasks are completed regularly, areas remain in good condition. When tasks are missed, areas degrade over time, reflecting neglect or lack of maintenance.
+
+The system is intentionally domain-agnostic and can be adapted to many types of environments without hard-coded assumptions.
+
+---
+
+## Core Concepts
+
+### Locations and Areas
+
+- Locations represent top-level environments
+- Each location may contain multiple areas
+- Areas may be nested to form a hierarchy
+- Areas have a **status** representing their current condition
+
+### Area Status
+
+- Status indicates how well an area is being maintained
+- Status values are configurable (e.g. healthy, warning, degraded)
+- Area status changes over time based on maintenance activity
+
+### Tasks
+
+- Tasks are associated with areas
+- Each task has a defined schedule
+- Tasks represent recurring maintenance or upkeep actions
+- Task completion positively affects area condition
+
+### Degradation
+
+- Areas degrade automatically when scheduled tasks are missed
+- Degradation is gradual, not binary
+- Regular maintenance prevents or reverses degradation
+
+---
+
+## Technology Stack
+
+- Node.js
+- npm
+- Prisma (ORM)
+- Database: SQLite / PostgreSQL (configurable)
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- PostgreSQL database
+- Node.js (v18+ recommended)
+- npm
+- A supported database
 
-### Installation
+---
 
-1. Clone the repository and install dependencies:
+## Developer Setup
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/srayner/sodium.git sodium
+cd sodium
+```
+
+### Install dependencies
 
 ```bash
 npm install
 ```
 
-2. Copy the environment file and configure your database:
+### Create a database and database user
 
-```bash
-cp .env.example .env
+```sql
+CREATE USER sodium WITH PASSWORD 'your_password';
+ALTER USER sodium CREATEDB;
+CREATE DATABASE sodium OWNER sodium;
 ```
 
-Edit `.env` with your database connection string and NextAuth secret:
+### Create an .env.local file.
 
-```
-DATABASE_URL="postgresql://user:password@localhost:5432/next_skeleton?schema=public"
-AUTH_URL="http://localhost:3000"
-AUTH_SECRET="your-secret-key-here"
-```
-
-Generate a secret with:
-```bash
-openssl rand -base64 32
-```
-
-3. Generate Prisma client and run migrations:
+### Create prisma client and initialise database
 
 ```bash
 npm run db:generate
 npm run db:migrate
-```
-
-4. Seed the database with default users:
-
-```bash
 npm run db:fixtures
 ```
 
-5. Start the development server:
+### Start the dev server
 
 ```bash
 npm run dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Default Users
-
-| Role  | Email               | Password    |
-|-------|---------------------|-------------|
-| User  | user@example.com    | password123 |
-| Admin | admin@example.com   | admin123    |
-
-## Available Scripts
-
-| Script          | Description                          |
-|-----------------|--------------------------------------|
-| `npm run dev`   | Start development server             |
-| `npm run build` | Build for production                 |
-| `npm run start` | Start production server              |
-| `npm run lint`  | Run ESLint                           |
-| `npm run format`| Format code with Prettier            |
-| `npm run db:generate` | Generate Prisma client         |
-| `npm run db:migrate`  | Run database migrations        |
-| `npm run db:fixtures` | Reset and seed database        |
-
-## Project Structure
-
-```
-next-skeleton/
-├── prisma/
-│   ├── schema.prisma          # Database schema
-│   └── fixtures.ts            # Seed script
-├── app/
-│   ├── globals.css            # Theme CSS variables
-│   ├── layout.tsx             # Root layout
-│   ├── page.tsx               # Landing page
-│   ├── (auth)/                # Auth pages (login, register)
-│   ├── (protected)/           # Protected pages (dashboard, settings, admin)
-│   └── api/                   # API routes
-├── components/
-│   ├── ui/                    # shadcn/ui components
-│   ├── layout/                # AppShell, Sidebar, TopNav
-│   ├── auth/                  # LoginForm, RegisterForm
-│   └── providers/             # ThemeProvider, SessionProvider
-├── lib/
-│   ├── auth.ts                # NextAuth configuration
-│   ├── prisma.ts              # Prisma client
-│   └── utils.ts               # Utilities
-├── hooks/                     # Custom React hooks
-├── types/                     # TypeScript declarations
-└── middleware.ts              # Route protection
-```
-
-## Customization
-
-### Theme
-
-Edit `app/globals.css` to customize the color scheme. The theme uses CSS variables for both light and dark modes.
-
-### Sidebar Navigation
-
-Edit `components/layout/app-sidebar.tsx` to modify navigation items. Admin-only items are automatically hidden for non-admin users.
-
-### Adding Protected Routes
-
-1. Create your page in `app/(protected)/your-route/page.tsx`
-2. The middleware automatically protects all routes under `(protected)`
-3. For admin-only routes, add a role check in the page component
-
-## License
-
-MIT
