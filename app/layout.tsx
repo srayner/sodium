@@ -15,8 +15,8 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'Next Skeleton',
-  description: 'A production-ready Next.js starter skeleton',
+  title: 'Sodium - Maintenance Tracking',
+  description: 'Track and manage cleaning and maintenance schedules for every space in your home or facility',
 }
 
 export default function RootLayout({

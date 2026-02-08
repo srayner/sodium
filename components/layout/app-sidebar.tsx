@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Settings, Shield, ChevronUp, User2 } from 'lucide-react'
+import { Home, Settings, Shield, ChevronUp, User2, Sparkles } from 'lucide-react'
 import { useSession, signOut } from 'next-auth/react'
 
 import {
@@ -71,10 +71,10 @@ export function AppSidebar() {
             <SidebarMenuButton size="lg" asChild>
               <Link href="/dashboard">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <Home className="size-4" />
+                  <Sparkles className="size-4" />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">Next Skeleton</span>
+                  <span className="font-semibold">Sodium</span>
                   <span className="text-xs text-muted-foreground">v0.1.0</span>
                 </div>
               </Link>

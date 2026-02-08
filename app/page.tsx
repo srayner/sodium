@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { Sparkles, MapPin, CalendarClock, Activity } from 'lucide-react'
 
 export default function HomePage() {
   return (
@@ -8,21 +10,9 @@ export default function HomePage() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-              >
-                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
+              <Sparkles className="h-4 w-4" />
             </div>
-            <span className="font-semibold">Next Skeleton</span>
+            <span className="font-semibold">Sodium</span>
           </div>
           <nav className="flex items-center gap-4">
             <Button asChild variant="ghost">
@@ -37,15 +27,17 @@ export default function HomePage() {
 
       <main className="flex-1">
         <section className="container mx-auto flex flex-col items-center justify-center gap-6 px-4 py-24 text-center md:py-32">
+          <Badge variant="secondary" className="text-sm">
+            Maintenance Made Simple
+          </Badge>
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-            Production-Ready
+            Keep Every Space
             <br />
-            <span className="text-muted-foreground">Next.js Starter</span>
+            <span className="text-primary">Pristine</span>
           </h1>
           <p className="max-w-[600px] text-lg text-muted-foreground">
-            A complete starter template with authentication, role-based
-            authorization, and a professional admin dashboard layout. Built with
-            Next.js 14, TypeScript, Tailwind CSS, and shadcn/ui.
+            Track maintenance schedules for every room, surface, and outdoor
+            space. Never wonder when something was last done again.
           </p>
           <div className="flex gap-4">
             <Button asChild size="lg">
@@ -58,28 +50,82 @@ export default function HomePage() {
         </section>
 
         <section className="border-t bg-muted/40">
-          <div className="container mx-auto grid gap-8 px-4 py-16 md:grid-cols-3">
-            <div className="space-y-2">
-              <h3 className="font-semibold">Authentication</h3>
-              <p className="text-sm text-muted-foreground">
-                Secure credentials-based authentication with NextAuth v5,
-                including login, registration, and session management.
-              </p>
+          <div className="container mx-auto px-4 py-16">
+            <h2 className="mb-8 text-center text-2xl font-semibold">
+              How It Works
+            </h2>
+            <div className="grid gap-8 md:grid-cols-3">
+              <div className="flex flex-col items-center space-y-3 text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <MapPin className="h-6 w-6" />
+                </div>
+                <h3 className="font-semibold">Add Locations</h3>
+                <p className="text-sm text-muted-foreground">
+                  Register the spaces you want to maintain - rooms, surfaces,
+                  appliances, or any area that needs regular attention.
+                </p>
+              </div>
+              <div className="flex flex-col items-center space-y-3 text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <CalendarClock className="h-6 w-6" />
+                </div>
+                <h3 className="font-semibold">Schedule Tasks</h3>
+                <p className="text-sm text-muted-foreground">
+                  Create recurring maintenance schedules. Set how often each
+                  task needs doing - daily, weekly, monthly, or custom.
+                </p>
+              </div>
+              <div className="flex flex-col items-center space-y-3 text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <Activity className="h-6 w-6" />
+                </div>
+                <h3 className="font-semibold">Track Status</h3>
+                <p className="text-sm text-muted-foreground">
+                  Monitor the maintenance status of every location in real-time.
+                  Get notified when tasks are due.
+                </p>
+              </div>
             </div>
-            <div className="space-y-2">
-              <h3 className="font-semibold">Role-Based Access</h3>
-              <p className="text-sm text-muted-foreground">
-                Built-in user roles with middleware protection. Admin and user
-                roles with protected routes out of the box.
-              </p>
+          </div>
+        </section>
+
+        <section className="border-t">
+          <div className="container mx-auto px-4 py-16">
+            <h2 className="mb-4 text-center text-2xl font-semibold">
+              Status at a Glance
+            </h2>
+            <p className="mb-8 text-center text-muted-foreground">
+              Every location displays its current status based on when it was
+              last maintained
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Badge className="bg-green-500 hover:bg-green-500/90">
+                Excellent
+              </Badge>
+              <Badge className="bg-blue-500 hover:bg-blue-500/90">Good</Badge>
+              <Badge className="bg-yellow-500 hover:bg-yellow-500/90">
+                Fair
+              </Badge>
+              <Badge className="bg-orange-500 hover:bg-orange-500/90">
+                Needs Attention
+              </Badge>
+              <Badge className="bg-red-500 hover:bg-red-500/90">Critical</Badge>
             </div>
-            <div className="space-y-2">
-              <h3 className="font-semibold">Modern Stack</h3>
-              <p className="text-sm text-muted-foreground">
-                Built with Next.js 14 App Router, TypeScript, Tailwind CSS,
-                shadcn/ui components, and Prisma ORM.
-              </p>
-            </div>
+          </div>
+        </section>
+
+        <section className="border-t bg-primary/5">
+          <div className="container mx-auto flex flex-col items-center gap-6 px-4 py-16 text-center">
+            <h2 className="text-2xl font-semibold">
+              Ready to stay on top of maintenance?
+            </h2>
+            <p className="max-w-[500px] text-muted-foreground">
+              Start tracking today and never lose track of your maintenance
+              schedule again.
+            </p>
+            <Button asChild size="lg">
+              <Link href="/register">Get Started for Free</Link>
+            </Button>
           </div>
         </section>
       </main>
@@ -87,7 +133,7 @@ export default function HomePage() {
       <footer className="border-t py-6">
         <div className="container mx-auto flex items-center justify-center px-4">
           <p className="text-sm text-muted-foreground">
-            Next Skeleton - A production-ready starter template
+            Sodium - Maintenance tracking for every space
           </p>
         </div>
       </footer>
